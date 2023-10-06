@@ -4,14 +4,22 @@ public class FinancialCalculators {
 
     public static void main(String[] args) {
 
-        mortgageCalc();
+       //if statement for selecting a calculator mode
+        Scanner keyboard = new Scanner(System.in);
+            int choice;
+        System.out.print("Select your calculator mode:\n");
+        System.out.println("\t (1.)Mortgage");
+        System.out.println("\t (2.)Compound Interest\n");
+        choice = keyboard.nextInt();
 
-
-
-
-
-
-
+        if(choice == 1)
+        {
+            mortgageCalc();
+        }
+        else if(choice == 2)
+        {
+            compoundInterest();
+        }
 
 
 
@@ -53,11 +61,43 @@ public class FinancialCalculators {
         System.out.println();
         System.out.printf("Your total interest is: %.2f" , totalInterest);
 
+    }//end morgCalc
 
+
+    //calculates and displays compound interest
+    public static void compoundInterest(){
+        //declare local variables
+        Scanner keyboard = new Scanner(System.in);
+        double deposit = 0.0;
+        double interestRate = 0.0;
+        double years = 0.0;
+        // get user input
+        System.out.print("Enter the deposit amount: $");
+        deposit = keyboard.nextDouble();
+        System.out.print("Enter the interest rate: ");
+        interestRate = keyboard.nextDouble();
+        interestRate /= 100;
+        System.out.print("Enter the number of years: ");
+        years = keyboard.nextDouble();
+
+        // calculations
+
+        double futureValue = deposit;
+
+        for(int i = 0; i < years; i++){
+            futureValue *= (1 + interestRate);
+        }
+
+        double totalInterest;
+
+        totalInterest = futureValue - deposit;
+
+        // display data
+
+        System.out.printf("Your future value after %.2f   years would be: $%.2f" , years,futureValue);
+
+        System.out.printf("Total amount interest earned: $%.2f" , totalInterest );
     }
-
-
-
 
 
 
