@@ -9,7 +9,8 @@ public class FinancialCalculators {
             int choice;
         System.out.print("Select your calculator mode:\n");
         System.out.println("\t (1.)Mortgage");
-        System.out.println("\t (2.)Compound Interest\n");
+        System.out.println("\t (2.)Compound Interest");
+        System.out.println("\t (3.)Annuity\n");
         choice = keyboard.nextInt();
 
         if(choice == 1)
@@ -20,6 +21,11 @@ public class FinancialCalculators {
         {
             compoundInterest();
         }
+        else if(choice == 3)
+        {
+            annuity();
+        }
+
 
 
 
@@ -97,8 +103,34 @@ public class FinancialCalculators {
         System.out.printf("Your future value after %.2f   years would be: $%.2f" , years,futureValue);
 
         System.out.printf("Total amount interest earned: $%.2f" , totalInterest );
-    }
+    }//end compoundInterest
 
+
+    public static void annuity(){
+
+        //declare local variables
+        Scanner keyboard = new Scanner(System.in);
+        double monthlyPayout = 0.0;
+        double interestRate = 0.0;
+        double years = 0.0;
+        double investment = 0.0;
+
+        //get user input
+        System.out.print("What is the monthly payout of the annuity?: ");
+        monthlyPayout = keyboard.nextDouble();
+        System.out.print("what is the interest percentage?: ");
+        interestRate = keyboard.nextDouble();
+        System.out.print("For how many years?: ");
+        years = keyboard.nextDouble();
+        double amountOfPayments = years * 12;
+        //calculations
+                            //PMT
+        investment = monthlyPayout * ((1 - Math.pow((1 + (interestRate/1200)), amountOfPayments * -1)) / (interestRate/1200));
+
+        //display data
+        System.out.printf("To fund that annuity, you would need to invest: %.2f today.",investment);
+
+    }
 
 
 }
